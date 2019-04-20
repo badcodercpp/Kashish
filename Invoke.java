@@ -9,8 +9,8 @@ import java.io.IOException;
 public class Invoke {
     public static void main(String[] args) throws Exception {
         String html = Utill.readFile("demo.html");
-        System.out.println("file reading completed");
-        System.out.println("analyzing html now");
+        // System.out.println("file reading completed");
+        // System.out.println("analyzing html now");
         Document doc = Jsoup.parse(html);
         Element e = Utill.xpathToJsoupQuery("hi_4",doc);
         String s = Utill.getOwnContainingText(e);

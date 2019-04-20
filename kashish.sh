@@ -5,5 +5,5 @@ javac -cp ".:./dependencies/jsoup-1.12.1-SNAPSHOT.jar" Invoke.java
 echo "sleeping for a while"
 sleep 1
 echo "executing java"
-java -cp ".:./dependencies/jsoup-1.12.1-SNAPSHOT.jar" Invoke
-echo $OK
+declare -r HTMLTAGTEXT=`java -cp ".:./dependencies/jsoup-1.12.1-SNAPSHOT.jar" Invoke`
+echo $HTMLTAGTEXT
