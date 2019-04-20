@@ -26,4 +26,16 @@ public class Utill {
     public static String getOwnContainingText(Element e){
         return e.text();
     }
+
+    public static Element getElementByProperty(Document doc,String data){
+        Element links = doc.select("a[href='"+data+"']").first();
+        return links;
+    }
+
+    // public static Element getElement(String xPath){
+    //     //xsoup == xpath 
+    //     $x("//a[@href='']")
+    //     Element e xsoup.compile(xPath).any();
+    //     return e;
+    // }
 }
