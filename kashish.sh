@@ -13,6 +13,8 @@ do
                     if grep -q pre <<< "$targetFile"; then
                         if grep -q html <<< "$targetFile"; then
                             echo "$targetFile"
+                            echo $PWD
+                            echo "$PWD/$targetFile"
                             #copy previous bash here
                         fi
                     fi
