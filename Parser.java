@@ -1,16 +1,43 @@
+
 import java.io.*;
+import org.jsoup.Jsoup;
+import org.jsoup.helper.Validate;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import java.util.*;
 public class Parser {
-    public static List<String> parse(Document doc){
-        List<String> lt = new List<String>();
-        for (Element element : doc.getAllElements()) {
-            if(element.nodeName().equals("pre") && element.childNode(0).nodeName().equals("#text")){
-                //System.out.println(element.toString());
-                if(element.text().toUpperCase().indexOf("insert".toUpperCase())>-1){
-                    lt.add(element.text())
+    private List < String > lts;
+    private List < String > keyWord;
+    public Parser() {
+        this.lts = new ArrayList < String > ();
+        this.lts.add("pre");
+        this.lts.add("p");
+        this.keyWord = new ArrayList < String > ();
+        this.keyWord.add("insert");
+        this.keyWord.add("delete");
+    }
+    public Set < Set < String >> parse(Document doc) {
+        Set < Set < String >> st = new HashSet < Set < String >> ();
+        Set < String > ins = new HashSet < String > ();
+        Set < String > del = new HashSet < String > ();
+        List < String > lt = new ArrayList < String > ();
+        for (Element element: doc.getAllElements()) {
+            for (String str: this.lts) {
+                for (String kw: this.keyWord) {
+                    if (element.nodeName().equals(str)) {
+                        if (element.text().toUpperCase().indexOf(kw.toUpperCase()) > -1) {
+                            if (kw.toUpperCase().equals("insert".toUpperCase())) {
+                                ins.add(element.text());
+                            } else if (kw.toUpperCase().equals("delete".toUpperCase())) {
+                                del.add(element.text());
+                            }
+                        }
+                    }
                 }
             }
         }
-        // this will give yoy the all text of the dom which have Insert word
-        return lt;
+        st.add(ins);
+        st.add(del);
+        return st;
     }
 }
